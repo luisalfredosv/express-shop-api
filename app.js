@@ -41,9 +41,9 @@ app.listen(app.get('puerto'), () => {
 const mongoose = require('mongoose');
 const uri = 'mongodb://localhost:27017/myapp';
 const options = {
-	auth: { "authSource": "admin" },
-    user: "root",
-    pass: "12795lasv",
+	//auth: { "authSource": "admin" },
+    //user: "root",
+    //pass: "12795lasv",
 	useNewUrlParser: true, 
 	useCreateIndex: true,
 	useUnifiedTopology: true

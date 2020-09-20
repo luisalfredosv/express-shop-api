@@ -4,7 +4,9 @@ const Schema = mongoose.Schema;
 // // Model Products 4
 const productAddonsSchema = new Schema({
   id_product: { type: String, required: [true, "El id es necesario"] },
+  id_stablishiment: { type: String, required: [true, "El id es necesario"] },
   name: String,
+  slug: String,
   type: Number,
   quality: Number,
   min: Number,

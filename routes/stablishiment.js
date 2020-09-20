@@ -12,7 +12,7 @@ import Addon from "../models/addon";
 // const { verificarAuth, verificaRol } = require("../middlewares/autenticacion");
 
 
-// Agregar una nota
+// add stablishiment
 router.post('/add', async(req, res) => {
  const body = req.body; 
    try {
@@ -26,12 +26,9 @@ router.post('/add', async(req, res) => {
   }
 });
 
-
-// Get con todos los documentos segun user id
+// Get all stablishiment
 router.get('/get', async(req, res) => {
-
   // const usuarioId = req.usuario._id
-
   try {
     const StablishimentDB = await Stablishiment.find();
     res.json(StablishimentDB);
@@ -43,8 +40,7 @@ router.get('/get', async(req, res) => {
   }
 });
 
-
-// buscar nota por id
+// get products by id
 router.get('/buscar/:id', async(req, res) => {
   const id_stablishiment = req.params.id;
   try {
@@ -103,10 +99,7 @@ router.get('/buscar/:id', async(req, res) => {
 //   }
 // });
 
-
-
-
-// Agregar products
+// add products
 router.post('/product/add', async(req, res) => {
  const body = req.body; 
    try {
@@ -120,7 +113,7 @@ router.post('/product/add', async(req, res) => {
   }
 });
 
-// details products
+// details products by id
 router.get('/product/buscar/:id', async(req, res) => {
   const _id = req.params.id;
   try {
@@ -167,7 +160,21 @@ router.get('/product/addons/:id', async(req, res) => {
         error
       })
     }
-    res.json(AddonDB);  
+
+    let response = [];
+
+      let ingredientes = AddonDB.filter(index =>index.type ==1 );
+      let especial = AddonDB.filter(index =>index.type ==2 );
+      let extra = AddonDB.filter(index =>index.type ==3 );
+
+    response.push({'ingredientes': ingredientes});
+    response.push({'especial': especial});
+    response.push({'extra': extra});
+
+    res.json(response);  
+
+
+    //res.json(AddonDB);  
   } catch (error) {
     return res.status(400).json({
       mensaje: 'Ocurrio un error',
